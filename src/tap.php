@@ -1,7 +1,7 @@
-<?php return
+<?php return static function ($factory) {
+    return function ($given, $callback) {
+        $callback($given);
 
-function ($given, $callback) {
-    $callback($given);
-
-    return $given;
+        return $given;
+    };
 };
