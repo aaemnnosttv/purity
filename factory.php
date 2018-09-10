@@ -14,6 +14,25 @@ new class {
         return $this->get($name)(...$args);
     }
 
+    public function new()
+    {
+        return new class($this) {
+            protected $factory;
+
+            public function __construct($factory)
+            {
+                $this->factory = $factory;
+            }
+
+            public function __call($name, $args)
+            {
+                $class = $this->factory->get($name);
+
+                return new $class(...$args);
+            }
+        };
+    }
+
     public function get($name)
     {
         if (empty($this->cache[$name])) {
