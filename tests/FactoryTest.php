@@ -2,6 +2,8 @@
 
 class FactoryTest extends \PHPUnit\Framework\TestCase
 {
+    use FactoryHelper;
+
     /** @test */
     function the_file_returns_a_new_instance()
     {
@@ -26,13 +28,4 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
         $this->assertNotSame($factory->each, $factory->each);
     }
 
-    /**
-     * @return mixed
-     */
-    protected function getFactory()
-    {
-        $factory = include __DIR__ . '/../factory.php';
-
-        return $factory;
-    }
 }
